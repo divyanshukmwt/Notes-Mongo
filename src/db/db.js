@@ -1,9 +1,15 @@
 const mongoose = require("mongoose");
+require("dotenv").config();
 
 function ConnectToDB() {
-  mongoose.connect("mongodb+srv://officialdivyanshu18_db_user:Tsr1SAVOAb7jH4jr@notes.oyp2ac8.mongodb.net/NotesDB").then(() => {
-    console.log("Database Connected");
-  });
+  mongoose
+    .connect(process.env.MONGO_URI)
+    .then(() => {
+      console.log("✅ Database Connected");
+    })
+    .catch((err) => {
+      console.error("❌ Database connection error:", err);
+    });
 }
 
 module.exports = ConnectToDB;
